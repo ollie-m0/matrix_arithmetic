@@ -61,7 +61,7 @@ void gaussian_elimination(double* arr_ptr, double* inv_arr_return, int n, double
     {
         for (int j=0; j<n; j++)
         {
-            inv_arr[n*i+j] = (i == j) ? 1 : 0;
+            inv_arr[n*i+j] = (i == j) ? 1.0 : 0.0;
         }
     }
 
@@ -129,6 +129,12 @@ void gaussian_elimination(double* arr_ptr, double* inv_arr_return, int n, double
             // No need to perform the same opperation on arr[n*i + j],
             // as we are finished with that array.
         }
+    }
+
+    // Check for garbage values that should be 0
+    for (int i=0; i<n*n; i++)
+    {
+        inv_arr[i] =  (std::fabs(inv_arr[i]) < epsilon) ? 0.0 : inv_arr[i];
     }
 
     // Print the matrix (only for small n)
