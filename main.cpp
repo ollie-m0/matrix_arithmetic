@@ -16,7 +16,9 @@ int main()
     double* inverse_ptr;
     inverse_ptr = inverse;
 
-    gaussian_elimination(arr, inverse_ptr, n);
+    std::cout << determinant(arr, n) << std::endl;
+
+    // gaussian_elimination(arr, inverse_ptr, n);
 
     return 0;
 }

@@ -5,6 +5,7 @@
 
 void print_array(double* arr, int n, std::string title="", int setw_size=10)
 {
+    // An immensely helpful function for bug fixing
     for (int i=0; i<(setw_size+1)*n; i++)
         std::cout << "_";
     std::cout << "__" << std::endl;
@@ -55,24 +56,68 @@ double determinant(double* arr_ptr, int n, double epsilon=1e-9)
     // This function calculates the determinant of the provided matrix
     double det;
 
-    if (n==1)
+    switch (n)
     {
-        return *(arr_ptr);
-    }
-    else if (n==2)
-    {
-        det = *(arr_ptr) * *(arr_ptr+3) - *(arr_ptr+1) * *(arr_ptr+2);
-        return det;
-    }
-    else
-    {
-        det = 0;
-        double sub_arr[n*n - 2*n + 1];
-        for (int i=0; i<n; i++)
-        {
+        case 1:
+            det = *(arr_ptr);
+            break;
 
-        }
+        case 2:
+            det = *(arr_ptr) * *(arr_ptr + 3) - *(arr_ptr + 1) * *(arr_ptr + 2);
+            break;
+
+        default:
+            det = 0;
+            double sub_arr[(n-1) * (n-1)];
+            int m;
+            for (int k=0; k<n; k++)
+            {
+                for (int i=1; i<n; i++)
+                {
+                    for (int j=0; j<n; j++)
+                    {
+                        if      (j==k) { continue; }
+                        else if (j>k)  { m = j-1;  }
+                        else           { m = j;    }
+
+                        sub_arr[(i-1)*(n-1) + m] = *(arr_ptr + i*n + j);
+                        // det += determinant(sub_arr, n-1) * arr[n*(i+1)];
+                    }
+                }
+                det += determinant(sub_arr, n-1) * *(arr_ptr + k) * pow(-1, k);
+            }
     }
+    // if (n==1)
+    // {
+    //     det = *(arr_ptr);
+    // }
+    // else if (n==2)
+    // {
+    //     det = *(arr_ptr) * *(arr_ptr + 3) - *(arr_ptr + 1) * *(arr_ptr + 2);
+    // }
+    // else
+    // {
+    //     det = 0;
+    //     double sub_arr[(n-1) * (n-1)];
+    //     int m;
+    //     for (int k=0; k<n; k++)
+    //     {
+    //         for (int i=1; i<n; i++)
+    //         {
+    //             for (int j=0; j<n; j++)
+    //             {
+    //                 if      (j==k) { continue; }
+    //                 else if (j>k)  { m = j-1;  }
+    //                 else           { m = j;    }
+    //
+    //                 sub_arr[(i-1)*(n-1) + m] = *(arr_ptr + i*n + j);
+    //                 // det += determinant(sub_arr, n-1) * arr[n*(i+1)];
+    //             }
+    //         }
+    //         det += determinant(sub_arr, n-1) * *(arr_ptr + k) * pow(-1, k);
+    //     }
+    // }
+    return det;
 }
 
 
@@ -122,8 +167,6 @@ void gaussian_elimination(double* arr_ptr, double* inv_arr_return, int n, double
         {
             factor = -(arr[i*n + k] / arr[k*(n+1)]); // Factor by which to multiply kth row before addition to ith row.
 
-            if (factor==0.0) { continue; }  // While the float comparrison is potentially dangerous, this line is just to skip
-                                            // code that wouldn't do anything anyway, so not a big deal if the condition fails.
             for (int j=0; j<n; j++)
             {
                 arr[i*n + j]     += factor * arr[k*n + j];
