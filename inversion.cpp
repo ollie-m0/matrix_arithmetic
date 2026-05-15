@@ -50,9 +50,36 @@ void change_zero_row(double* arr, double* inv_arr, int n, int row, int column, d
 }
 
 
+double determinant(double* arr_ptr, int n, double epsilon=1e-9)
+{
+    // This function calculates the determinant of the provided matrix
+    double det;
+
+    if (n==1)
+    {
+        return *(arr_ptr);
+    }
+    else if (n==2)
+    {
+        det = *(arr_ptr) * *(arr_ptr+3) - *(arr_ptr+1) * *(arr_ptr+2);
+        return det;
+    }
+    else
+    {
+        det = 0;
+        double sub_arr[n*n - 2*n + 1];
+        for (int i=0; i<n; i++)
+        {
+
+        }
+    }
+}
+
+
 
 void gaussian_elimination(double* arr_ptr, double* inv_arr_return, int n, double epsilon=1e-9)
 {
+    // This function calculates the inverse of the provided matrix through Gaussian elimination
 
     // Define the identity matrix, which will be returned as the inverted matrix at the end.
     double inv_arr[n*n];
