@@ -3,7 +3,7 @@
 #include <cmath>
 #include <string>
 
-void print_array(double* arr, int n, int m, std::string title="", int setw_size=10)
+void print_matrix(double* arr, int n, int m, std::string title="", int setw_size=10)
     // An immensely helpful function for bug fixing.
     // Prints an n by m matrix to the terminal.
 {
@@ -17,7 +17,7 @@ void print_array(double* arr, int n, int m, std::string title="", int setw_size=
         std::cout << '[';
         for (int j=0; j<m; j++)
         {
-            std::cout << ' ' << std::setw(setw_size) << *(arr + i*n + j);
+            std::cout << ' ' << std::setw(setw_size) << *(arr + i*m + j);
             if (j==m-1) { std::cout << ']' << std::endl; }
         }
     }
@@ -114,7 +114,7 @@ void mat_multiply(double* arr_1_ptr, double* arr_2_ptr, int n_1, int m_1, int n_
             }
         }
     }
-    print_array(product, n_1, m_2, "product");
+    print_matrix(product, n_1, m_2, "product");
 }
 
 void gaussian_elimination(double* arr_ptr, double* inv_arr_return, int n, double epsilon=1e-9)
@@ -203,6 +203,6 @@ void gaussian_elimination(double* arr_ptr, double* inv_arr_return, int n, double
 
     // Print the matrix (only for small n)
     if (n<=50)
-    { print_array(&inv_arr[0], n, n, "Inverted matrix:", 10); }
+    { print_matrix(&inv_arr[0], n, n, "Inverted matrix:", 10); }
 
 }
