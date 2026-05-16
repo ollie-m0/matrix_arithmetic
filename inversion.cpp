@@ -84,7 +84,6 @@ double determinant(double* arr_ptr, int n, double epsilon=1e-9)
                         else           { m = j;    }
 
                         sub_arr[(i-1)*(n-1) + m] = *(arr_ptr + i*n + j);
-                        // det += determinant(sub_arr, n-1) * arr[n*(i+1)];
                     }
                 }
                 det += determinant(sub_arr, n-1) * *(arr_ptr + k) * pow(-1, k);
