@@ -24,7 +24,7 @@ When all of the above steps are applied to the identity matrix, the result is th
 
 In the standard notation of Gaussian elimination, this process goes as follows:
 
-```
+
 $$
     \left[ \begin{array}{ccc|ccc}
     
@@ -47,4 +47,4 @@ $$
 $$
 
 
-```
+
