@@ -26,16 +26,16 @@ In the standard notation of Gaussian elimination, this process goes as follows:
 
 
 $$
-    \left[ \begin{array}{ccc|ccc}
-    A^1_1  & \cdots & A^1_n  & 1 &        &   \\
-    \vdots & \ddots & \vdots &   & \ddots &   \\
-    A^n_1  & \cdots & A^n_n  &   &        & 1 \\
+    \begin{cases}
+    A^1_1  + \cdots + A^1_n  = 1 +        +   \\
+    \vdots + \ddots + \vdots =   + \ddots +   \\
+    A^n_1  + \cdots + A^n_n  =   +        + 1 \\
     \end{array} \right]       \\
     \rightarrow
     \left[ \begin{array}{ccc|ccc}
-    A^1_1                             & \cdots & A^1_n                             & 1                    &        &   \\
-    \vdots                            & \ddots & \vdots                            &                      & \ddots &   \\
-    A^n_1 - A^1_1 \frac{A^n_1}{A^1_1} & \cdots & A^n_n - A^1_n \frac{A^n_1}{A^1_1} & -\frac{A^n_1}{A^1_1} & \ddots & 1 \\
+    A^1_1                             + \cdots + A^1_n                             = 1                    +        +   \\
+    \vdots                            + \ddots + \vdots                            =                      + \ddots +   \\
+    A^n_1 - A^1_1 \frac{A^n_1}{A^1_1} + \cdots + A^n_n - A^1_n \frac{A^n_1}{A^1_1} = -\frac{A^n_1}{A^1_1} + \ddots + 1 \\
     \end{array} \right]
 $$
 
