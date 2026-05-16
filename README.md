@@ -33,9 +33,9 @@ $$
     A^n_1  & \cdots & A^n_n  &   &        & 1 \\
     
     \end{array} \right]
-$$
 
-$$
+
+
     \rightarrow
     \left[ \begin{array}{ccc|ccc}
     
